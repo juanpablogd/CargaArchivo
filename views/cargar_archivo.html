@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cargar Archivo</title>
+  <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            <h2>Cargar Archivo</h2>
+            <h4>Fedearroz</h4>
+            <div class="form-group">
+			  <label for="sel1">Sistema Referencia:</label>
+			  <select class="form-control" id="tipoData">
+			    <option value="pre">Predicción</option>
+			    <option value="pro">Producción</option>
+			  </select>
+			</div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+            
+            <button class="btn btn-lg upload-btn" type="button">Subir Archivo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input id="upload-input" type="file" name="uploads[]" accept=".csv"></br>
+
+  <script src="resources/jquery/jquery.min.js"></script>
+  <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+  <script src="resources/socket.io/socket.io.min.js"></script>
+  <script src="javascripts/Main.js"></script>
+  <script src="javascripts/upload.js"></script>
+</body>
+</html>
