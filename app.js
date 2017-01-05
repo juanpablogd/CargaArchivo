@@ -18,9 +18,9 @@ http.listen(3000, function() {
 var Config={
 	cxPG : { //console.log('Sincronizo'+moment().format('DD-MM-YYYY HH:mm'));
 		user: 'postgres',
-		password: 'p0s76r3s',
+		password: 'S0f1t3k_pg',
 		database: 'fedearroz',
-		host: '127.0.0.1',
+		host: 'sofytek.com.co',
 		port: 5432,
 		application_name: 'Geocodificardor Cali',
 		max: 10, //set pool max size to 20
@@ -46,20 +46,21 @@ var Func={
 var pool = new pg.Pool(Config.cxPG);
 
 var data = {
-    titpreAnio: function(fila) {
+    titAnio: function(fila) {
         var tx = undefined;
         var titulos = Object.keys(fila);
         for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
             var t = titulos[i].toString().toUpperCase().trim();
             if (t == "ANIO") { tx = titulos[i]; break;}
-            if (t == "AÑO") { tx = titulos[i]; break;
-            }
+            if (t == "AÑO") { tx = titulos[i]; break;}
+            if (t == "AGNO") { tx = titulos[i]; break;}
         }
         if (tx == undefined) { //console.log("Revisa valores");
             for (var i = 0; i < titulos.length; i++) {
                 var t = fila[titulos[i]].toString().toUpperCase().trim();
                 if (t == "ANIO") { tx = titulos[i]; break; }
                 if (t == "AÑO") { tx = titulos[i]; break; }
+                if (t == "AGNO") { tx = titulos[i]; break; }
             }
         }
         return tx;
@@ -200,20 +201,235 @@ var data = {
         }
         return tx;
     },
-    dataPrediccion: function(jsonArray){
+	titCodepto: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "COD_DEPTO") { tx = titulos[i]; break;}
+            if (t == "CODDEPTO") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "COD_DEPTO") { tx = titulos[i]; break; }
+                if (t == "CODDEPTO") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titDepartamento: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "DEPTO") { tx = titulos[i]; break;}
+            if (t == "DEPARTAMENTO") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "DEPTO") { tx = titulos[i]; break; }
+                if (t == "DEPARTAMENTO") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titSemestre: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "SEM") { tx = titulos[i]; break;}
+            if (t == "SEMESTRE") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "SEM") { tx = titulos[i]; break; }
+                if (t == "SEMESTRE") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproRiegoSupHa: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "RIEGO_SUPERFICIE_HA") { tx = titulos[i]; break;}
+            if (t == "RIEGO SUPERFICIE HA") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "RIEGO_SUPERFICIE_HA") { tx = titulos[i]; break; }
+                if (t == "RIEGO SUPERFICIE HA") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproRiegoProT: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "RIEGO_PRODUCCION_T") { tx = titulos[i]; break;}
+            if (t == "RIEGO PRODUCCION T") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "RIEGO_PRODUCCION_T") { tx = titulos[i]; break; }
+                if (t == "RIEGO PRODUCCION T") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproRiegoRenTHa: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "RIEGO_RENDIMIENTO_T_HA") { tx = titulos[i]; break;}
+            if (t == "RIEGO RENDIMIENTO T HA") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "RIEGO_RENDIMIENTO_T_HA") { tx = titulos[i]; break; }
+                if (t == "RIEGO RENDIMIENTO T HA") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproRiegoRenMin: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "RIEGO_RENDIMIENTO_MIN") { tx = titulos[i]; break;}
+            if (t == "RIEGO RENDIMIENTO MIN") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "RIEGO_RENDIMIENTO_MIN") { tx = titulos[i]; break; }
+                if (t == "RIEGO RENDIMIENTO MIN") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproRiegoRenMax: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "RIEGO_RENDIMIENTO_MAX") { tx = titulos[i]; break;}
+            if (t == "RIEGO RENDIMIENTO MAX") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "RIEGO_RENDIMIENTO_MAX") { tx = titulos[i]; break; }
+                if (t == "RIEGO RENDIMIENTO MAX") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproSecanoSupHa: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "SECANO_SUPERFICIE_HA") { tx = titulos[i]; break;}
+            if (t == "SECANO SUPERFICIE HA") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "SECANO_SUPERFICIE_HA") { tx = titulos[i]; break; }
+                if (t == "SECANO SUPERFICIE HA") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproSecanoProT: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "SECANO_PRODUCCION_T") { tx = titulos[i]; break;}
+            if (t == "SECANO PRODUCCION T") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "SECANO_PRODUCCION_T") { tx = titulos[i]; break; }
+                if (t == "SECANO PRODUCCION T") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproSecanoRenTHa: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "SECANO_RENDIMIENTO_T_HA") { tx = titulos[i]; break;}
+            if (t == "SECANO RENDIMIENTO T HA") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "SECANO_RENDIMIENTO_T_HA") { tx = titulos[i]; break; }
+                if (t == "SECANO RENDIMIENTO T HA") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproSecanoRenMin: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "SECANO_RENDIMIENTO_MIN") { tx = titulos[i]; break;}
+            if (t == "SECANO RENDIMIENTO MIN") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "SECANO_RENDIMIENTO_MIN") { tx = titulos[i]; break; }
+                if (t == "SECANO RENDIMIENTO MIN") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+	titproSecanoRenMax: function(fila) {
+        var tx = undefined;
+        var titulos = Object.keys(fila);
+        for (var i = 0; i < titulos.length; i++) { //console.log(titulos[i]);
+            var t = titulos[i].toString().toUpperCase().trim();
+            if (t == "SECANO_RENDIMIENTO_MAX") { tx = titulos[i]; break;}
+            if (t == "SECANO RENDIMIENTO MAX") { tx = titulos[i]; break;}
+        }
+        if (tx == undefined) { //console.log("Revisa valores");
+            for (var i = 0; i < titulos.length; i++) {
+                var t = fila[titulos[i]].toString().toUpperCase().trim();
+                if (t == "SECANO_RENDIMIENTO_MAX") { tx = titulos[i]; break; }
+                if (t == "SECANO RENDIMIENTO MAX") { tx = titulos[i]; break; }
+            }
+        }
+        return tx;
+    },
+    dataPrediccion: function(jsonArray,idCliente){
     	var BreakException = {};
 		var contador = 0; //console.log(jsonArray);
         var anio, mes, tipo, estacion, latitud, longitud, bajo, normal, sobre;
-/*                    //ELIMINA GeoCode ANTERIOR DEL USUARIO
-                    pool.query("DELETE FROM  t_geocode_tmp_inv WHERE id_usr = $1;", [id_usr],
-                        function(err, result) {
-                            if (err) return console.error('Error Eliminando datos cordenada', err);
-                        }
-                    );	*/
-        try {
-            jsonArray.forEach(function(fila) {
+        try {	console.log(contador);
+            jsonArray.forEach(function(fila) { 
                 if (contador == 0) { //console.log(fila);
-                    anio = data.titpreAnio(fila); //console.log("ColumnaX: "+longitud);
+                    anio = data.titAnio(fila); //console.log("ColumnaX: "+longitud);
                     mes = data.titpreMes(fila);
                     tipo = data.titpreTipo(fila);
                     estacion = data.titpreEstacion(fila);
@@ -222,30 +438,74 @@ var data = {
                     bajo = data.titpreBajo(fila);
                     normal = data.titpreNormal(fila);
                     sobre = data.titpreSobre(fila);	//console.log("ColumnaY: "+latitud);
-                } else {
-                    if (anio == undefined || mes == undefined || estacion == undefined || latitud == undefined || longitud == undefined || bajo == undefined || normal == undefined || sobre == undefined) throw BreakException;
-                } //console.log(fila[longitud] + " " + fila[latitud]);
-                if (fila[longitud] != null && fila[latitud] != null) { //console.log("inserta");
+                }
+                if (anio == undefined || mes == undefined || estacion == undefined || latitud == undefined || longitud == undefined || bajo == undefined || normal == undefined || sobre == undefined) throw BreakException;
+                contador++;
+                if (fila[anio] != null && fila[mes] != null && fila[estacion] != null && fila[longitud] != null && fila[latitud] != null && fila[bajo] != null && fila[normal] != null  && fila[sobre] != null) { //console.log("inserta");
                     pool.query("INSERT INTO t_prediccion(anio,mes,tipo,estacion,longitud,latitud,bajo,normal,sobre) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9);", [fila[anio],fila[mes],fila[tipo],fila[estacion],fila[longitud].replace(",", "."), fila[latitud].replace(",", "."),fila[bajo].replace(",", "."),fila[normal].replace(",", "."),fila[sobre].replace(",", ".")],
                         function(err, result) {
                             if (err) return console.error('Error insertando Dato', err);
-                            contador++;   
-                            if(contador==jsonArray.length){
-                            	
-                            }                                    
                         }); //console.log(fila);
                 }
-
+                if(contador==jsonArray.length){
+            		io.to(idCliente).emit('srvCargarchivo', "Carga de información exitosa!");    	
+                }
             });
         } catch (e) {
             console.log(e);
-            console.log("Archivo No Valido");
+            io.to(idCliente).emit('srvCargarchivo', "Formato No Valido");
+            console.log("Formato No Valido");
             if (e !== BreakException) throw e;
         }
         console.log("Json Archivo: " + moment().format('h:mm:s:SSSS'));
         console.log("------------------------------------------------");
     },
-    leerArchivo: function(rutaArchivo, tema) {
+    dataProduccion: function(jsonArray,idCliente){ console.log("dataProduccion");
+    	var BreakException = {};
+		var contador = 0; //console.log(jsonArray);
+        var cod_depto,departamento,agno,semestre,riego_superficie_ha,riego_produccion_t,riego_rendimiento_t_ha,riego_rendimiento_min,riego_rendimiento_max,
+        		secano_superficie_ha,secano_produccion_t,secano_rendimiento_t_ha,secano_rendimiento_min,secano_rendimiento_max;
+        try {	console.log(contador);
+            jsonArray.forEach(function(fila) { 
+                if (contador == 0) { //console.log(fila);
+                    cod_depto = data.titCodepto(fila); //console.log("ColumnaX: "+longitud);
+                    departamento = data.titDepartamento(fila);
+                    agno = data.titAnio(fila);
+                    semestre = data.titSemestre(fila);
+                    riego_superficie_ha = data.titproRiegoSupHa(fila);
+                    riego_produccion_t = data.titproRiegoProT(fila);
+                    riego_rendimiento_t_ha = data.titproRiegoRenTHa(fila);
+                    riego_rendimiento_min = data.titproRiegoRenMin(fila);
+                    riego_rendimiento_max = data.titproRiegoRenMax(fila);	//console.log("ColumnaY: "+latitud);
+                    secano_superficie_ha = data.titproSecanoSupHa(fila);
+                    secano_produccion_t = data.titproSecanoProT(fila);
+                    secano_rendimiento_t_ha = data.titproSecanoRenTHa(fila);
+                    secano_rendimiento_min = data.titproSecanoRenMin(fila);
+                    secano_rendimiento_max = data.titproSecanoRenMax(fila);	//console.log("ColumnaY: "+latitud);
+                }
+                if (cod_depto == undefined || departamento == undefined || agno == undefined || semestre == undefined || riego_superficie_ha == undefined || riego_produccion_t == undefined || riego_rendimiento_t_ha == undefined || riego_rendimiento_min == undefined || riego_rendimiento_max == undefined || secano_superficie_ha == undefined || secano_produccion_t == undefined || secano_rendimiento_t_ha == undefined || secano_rendimiento_min == undefined || secano_rendimiento_max == undefined) throw BreakException;
+                contador++;
+                if (fila[cod_depto] != null && fila[departamento] != null && fila[agno] != null && fila[semestre] != null) { console.log("inserta: " + fila[riego_superficie_ha]);
+                    pool.query("INSERT INTO t_produccion(cod_depto, departamento, agno, semestre, riego_superficie_ha, riego_produccion_t, riego_rendimiento_t_ha, riego_rendimiento_min, riego_rendimiento_max,secano_superficie_ha, secano_produccion_t, secano_rendimiento_t_ha, secano_rendimiento_min, secano_rendimiento_max) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14);", 
+                    [fila[cod_depto],fila[departamento],fila[agno],fila[semestre],fila[riego_superficie_ha].toString().replace(",", "."), fila[riego_produccion_t].toString().replace(",", "."),fila[riego_rendimiento_t_ha].toString().replace(",", "."),fila[riego_rendimiento_min].toString().replace(",", "."),fila[riego_rendimiento_max].toString().replace(",", "."),fila[secano_superficie_ha].toString().replace(",", "."), fila[secano_produccion_t].toString().replace(",", "."),fila[secano_rendimiento_t_ha].toString().replace(",", "."),fila[secano_rendimiento_min].toString().replace(",", "."),fila[secano_rendimiento_max].toString().replace(",", ".")],
+                        function(err, result) {
+                            if (err) return console.error('Error insertando Dato', err);
+                        }); //console.log(fila);
+                }
+                if(contador==jsonArray.length){
+            		io.to(idCliente).emit('srvCargarchivo', "Carga de información exitosa!");    	
+                }
+            });
+        } catch (e) {
+            console.log(e);
+            io.to(idCliente).emit('srvCargarchivo', "Formato No Valido");
+            console.log("Formato No Valido");
+            if (e !== BreakException) throw e;
+        }
+        console.log("Json Archivo: " + moment().format('h:mm:s:SSSS'));
+        console.log("------------------------------------------------");
+    },
+    leerArchivo: function(rutaArchivo, tema, idCliente) {
         console.log(rutaArchivo + " " + tema);
         var converter = new Converter({
             constructResult: true,
@@ -257,11 +517,12 @@ var data = {
         converter.fromFile(rutaArchivo, function(err, jsonArray) {
             if (jsonArray != undefined) {
                 if (jsonArray.length > 0) {
-                	if(tema=="pre") data.dataPrediccion(jsonArray);
-
+                	if(tema=="pre") data.dataPrediccion(jsonArray,idCliente);
+                	if(tema=="pro") data.dataProduccion(jsonArray,idCliente);
                 }
             } else {
                 console.log("No se pudo leer el archivo");
+                io.to(idCliente).emit('srvCargarchivo', "No se pudo leer el archivo");
             }
         });
     }
@@ -393,9 +654,11 @@ var GeoCode={
 		    res.sendFile(path.join(__dirname, 'views/cargar_archivo.html'));
 		});
 		
-		app.post('/upload/:tipo', function(req, res) {
+		app.post('/upload/:tipo/:idCliente', function(req, res) {
 				var tipo = req.params.tipo;
+				var idCliente = req.params.idCliente;
 			    console.log("Tipo: " + tipo);
+			    console.log("idCliente: " + idCliente);
 			
 			    // create an incoming form object 
 			    var form = new formidable.IncomingForm();
@@ -425,7 +688,7 @@ var GeoCode={
 			        res.end(nombreArchivo);
 			        console.log(moment().format('h:mm:s:SSSS'));
 			        setTimeout(function() {
-			            data.leerArchivo(rutaArchivo, tipo);
+			            data.leerArchivo(rutaArchivo, tipo, idCliente);
 			        }, 100);
 			    });
 			

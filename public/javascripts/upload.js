@@ -31,7 +31,7 @@ var archivo = {
 		  }
 		var id_usr = 1;	//SELECCIONAR EL ID DEL USUARIO DEL LOGIN
 		$.ajax({
-		  url: '/upload/'+$("#tipoData").val(),
+		  url: '/upload/'+$("#tipoData").val()+'/'+GeoCode.idSkt,
 		  type: 'POST',
 		  data: formData,
 		  processData: false,

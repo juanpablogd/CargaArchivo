@@ -7,10 +7,13 @@
 		socket.on('connect', function () { 
 		   socket.emit('usuario',{id:'usuario'}, function (data) {
 		     _this.idSkt=data; 
-		     //console.log(GeoCode.idSkt);
+		     console.log(GeoCode.idSkt);
 		   });
 		   socket.on('terminaCarga', function (data) {
 		     alert(data);
+		   });
+		   socket.on('srvCargarchivo',function (data){
+			alert(data);
 		   });
 		});	
 	},
@@ -24,6 +27,6 @@
 			}	*/		
 		}
 		
-	}	 
+	}
  }; 
  GeoCode.Init();
